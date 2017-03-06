@@ -6,9 +6,9 @@ import TodoActions from './TodoActions';
 export class AllTodos extends React.Component {
   render() {
     return (
-      <div>
-        FIXME render all todos
-      </div>
+      <ul>
+        <li>FIXME render all todos</li>
+      </ul>
     );
   }
 }

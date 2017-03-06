@@ -7,7 +7,8 @@ export class NewTodo extends React.Component {
   render() {
     return (
       <div>
-        FIXME render new todo form
+        <input type="text" value="FIXME" onChange={e => "FIXME"} />
+        <input type="submit" onClick={e => "FIXME"} />
       </div>
     );
   }
