@@ -1,5 +1,5 @@
 {
-  "name": "01-react-input-field",
+  "name": "04-redux-store",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
