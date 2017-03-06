@@ -4,7 +4,7 @@ class User extends React.PureComponent {
   render() {
     const email = this.props.email ? <span className="email"> {this.props.email}</span> : null;
     const active = this.props.active || false;
-    const activeInfo = <span class="active"> active: {active.toString()}</span>;
+    const activeInfo = <span className="active"> active: {active.toString()}</span>;
 
     return (
       <li>
