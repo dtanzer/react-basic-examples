@@ -7,8 +7,8 @@ export class NewTodo extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" value="FIXME" onChange={e => "FIXME"} />
-        <input type="submit" onClick={e => "FIXME"} />
+        <input type="text" value={this.props.newText} onChange={this.props.inputTextChanged} />
+        <input type="submit" onClick={e => this.props.newTodoSubmitted(this.props.newText)} />
       </div>
     );
   }
@@ -16,11 +16,12 @@ export class NewTodo extends React.Component {
 
 function mapStateToProperties(state) {
   return {
-    
+    newText: state.newTodo.text
   };
 }
 export const actionCreators = {
-  
+  inputTextChanged: (event) => { return { type: TodoActions.newTodoTextChanged, text: event.target.value }},
+  newTodoSubmitted: (text) => { return { type: TodoActions.newTodoCreated, text: text }}
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);
