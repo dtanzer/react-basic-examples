@@ -20,7 +20,7 @@ function mapStateToProperties(state) {
     greeting: state.welcome.greeting
   };
 }
-const actionCreators = {
+export const actionCreators = {
   toGreetChanged: (event) => { return { type: GreeterActions.greetingChanged, toGreet: event.target.value}; }
 }
 
