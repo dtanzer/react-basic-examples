@@ -15,7 +15,7 @@ export class AllTodos extends React.Component {
   renderTodo(todoData) {
     return (
       <li>
-        <input type="checkbox" checked={todoData.done} onClick={ () => this.props.toggleTodoState(todoData.text) } />
+        <input type="checkbox" checked={todoData.done} onChange={ () => this.props.toggleTodoState(todoData.text) } />
         {todoData.text}
       </li>);
   }
