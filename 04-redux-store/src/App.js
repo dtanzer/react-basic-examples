@@ -1,15 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import User from './User';
 
-class App extends Component {
+export class App extends Component {
   render() {
+    const renderedUsers = this.props.users.map(this.renderUser);
     return (
       <ul>
-        <User firstName="John" lastName="Doe" email="john.doe@example.com" active={true} />
-        <User firstName="Jane" lastName="Doe" />
+        {renderedUsers}
       </ul>
     );
   }
+
+  renderUser(userData) {
+    return <User firstName={userData.firstName} lastName={userData.lastName} email={userData.email} active={userData.active} />
+  }
 }
 
-export default App;
+function mapStateToProperties(state) {
+    return {
+        users: state.users
+    };
+}
+export const AppContainer = connect(mapStateToProperties)(App);
