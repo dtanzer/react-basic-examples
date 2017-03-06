@@ -1,10 +1,12 @@
 {
-  "name": "02-react-input-field",
+  "name": "05-redux-input-field",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "react-scripts": "0.9.3"
