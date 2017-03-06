@@ -1,30 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-class Greeter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      toGreet: "",
-      greeting: ""
-    };
-  }
+import GreeterActions from './GreeterActions';
 
+export class Greeter extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" value={this.state.toGreet} onChange={ e => this.setGreeting(e.target.value) }/>
-        <p>{this.state.greeting}</p>
+        <input type="text" value={this.props.toGreet} onChange={ this.props.toGreetChanged }/>
+        <p>{this.props.greeting}</p>
       </div>
     );
   }
-
-  setGreeting(toGreet) {
-    const greeting = toGreet ? "Hello " + toGreet : "";
-    this.setState({
-      toGreet,
-      greeting
-    });
-  }
 }
 
-export default Greeter;
+function mapStateToProperties(state) {
+  return {
+    toGreet: state.welcome.toGreet,
+    greeting: state.welcome.greeting
+  };
+}
+const actionCreators = {
+  toGreetChanged: (event) => { return { type: GreeterActions.greetingChanged, toGreet: event.target.value}; }
+}
+
+export const GreeterContainer = connect(mapStateToProperties, actionCreators)(Greeter);
