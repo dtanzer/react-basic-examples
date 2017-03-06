@@ -23,7 +23,7 @@ export function reducer(state, action) {
     case TodoActions.newTodoTextChanged:
       return Object.assign({}, state, {
         newTodo: { text: action.text }
-      })
+      });
     default:
       return state;
   }
