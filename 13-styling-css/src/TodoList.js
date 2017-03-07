@@ -24,10 +24,10 @@ export class TodoList extends Component {
     return (
       <div>
         <OverlayContainer />
-        <div id="tabs">
-          <a href="#" onClick={_ => this.props.switchTab("all")}>All Todos</a> | 
-          <a href="#" onClick={_ => this.props.switchTab("new")}>New Todo</a>
-        </div>
+        <ul id="tabs">
+          <li><a href="#" onClick={_ => this.props.switchTab("all")}>All Todos</a></li>
+          <li><a href="#" onClick={_ => this.props.switchTab("new")}>New Todo</a></li>
+        </ul>
         {activeTab}
       </div>
     );
