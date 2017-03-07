@@ -6,6 +6,8 @@ import { AllTodosContainer } from './AllTodos';
 import { NewTodoContainer } from './NewTodo';
 import { OverlayContainer } from './Overlay';
 
+import './TodoList.css';
+
 export class TodoList extends Component {
   render() {
     const todosTab = (

@@ -1,18 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './Overlay.css';
+
 export class Overlay extends React.Component {
   render() {
     const display = this.props.overlay? "block" : "none";
     const style = {
-        background: "rgba(0, 0, 0, 0.5)",
-        display: display,
-        position: "absolute",
-        top: 0, bottom: 0, left: 0, right: 0,
-        zIndex: 1000
+        display: display
     };
     return (
-      <div style={style}>
+      <div className="overlay" style={style}>
       </div>
     );
   }
