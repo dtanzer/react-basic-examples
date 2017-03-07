@@ -1,5 +1,8 @@
+//@flow
 import TodosActions from './TodosActions';
 import NewTodoActions from './NewTodoActions';
+
+import type { ActionType, StateType } from './TodoTypes';
 
 const initialState = {
   all: [
@@ -9,12 +12,13 @@ const initialState = {
       { text: "Host workshop", done: false }
     ]
 };
-export function todosReducer(state = initialState, action) {
+export function todosReducer(state: StateType = initialState, action: ActionType): StateType {
   switch(action.type) {
-    case TodosActions.todoStateToggled:
+    case 'TODO_STATE_TOGGLED':
+      const text = action.text;
       const newTodos = state.all.map(todo => {
         const newTodo = Object.assign({}, todo);
-        if(newTodo.text === action.text) {
+        if(newTodo.text === text) {
           newTodo.done = !newTodo.done;
           return newTodo;
         }
@@ -23,11 +27,12 @@ export function todosReducer(state = initialState, action) {
       return Object.assign({}, state, {
         all: newTodos
       });
-    case NewTodoActions.newTodoCreated:
+    case 'NEW_TODO_CREATED':
+      const todo = action.todo;
       return Object.assign({}, state, {
         all: [
           ...state.all,
-          action.todo
+          todo
         ]
       });
     default:

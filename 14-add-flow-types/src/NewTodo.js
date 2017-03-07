@@ -1,7 +1,10 @@
+//@flow
 import React from 'react';
 import { connect } from 'react-redux';
 
 import NewTodoActions from './NewTodoActions';
+
+import type { TodoType, NewTodoCreatedActionType, ActionType } from './TodoTypes';
 
 export class NewTodo extends React.Component {
   render() {
@@ -24,10 +27,14 @@ function createTodoOnServer(text, callback) {
   setTimeout(() => callback(createTodo(text)), 2000);
 }
 
-function createNewTodo(text) {
-  return (dispatch) => {
+function newTodoCreatedAction(todo: TodoType): NewTodoCreatedActionType {
+  return { type: NewTodoActions.newTodoCreated, todo: todo};
+}
+
+function createNewTodo(text: string) {
+  return (dispatch: (action: ActionType) => void) => {
     dispatch({type: NewTodoActions.creatingNewTodo });
-    createTodoOnServer(text, (todo) => dispatch({ type: NewTodoActions.newTodoCreated, todo: todo }))
+    createTodoOnServer(text, (todo) => dispatch(newTodoCreatedAction(todo)))
   }
 }
 
@@ -37,8 +44,8 @@ function mapStateToProperties(state) {
   };
 }
 export const actionCreators = {
-  inputTextChanged: (event) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
-  newTodoSubmitted: (text) => createNewTodo(text)
+  inputTextChanged: (event: { target: { value: string}}) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
+  newTodoSubmitted: (text: string) => createNewTodo(text)
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);
