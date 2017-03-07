@@ -4,7 +4,7 @@ const initialState = { text: "" };
 
 export function newTodoReducer(state = initialState, action) {
   switch(action.type) {
-    case NewTodoActions.newTodoCreated:
+    case NewTodoActions.creatingNewTodo:
       return Object.assign({}, state, {
         text: ""
       });
