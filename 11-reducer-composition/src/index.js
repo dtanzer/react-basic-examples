@@ -2,21 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { TodoListContainer } from './TodoList';
 import './index.css';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import { reducer } from './Reducer';
+import { tabsReducer } from './TabsReducer';
+import { newTodoReducer } from './NewTodoReducer';
+import { todosReducer } from './TodosReducer';
 
-const initialState = {
-  todos: [
-    { text: "Buy Milk", done: true },
-    { text: "Buy Beer", done: true },
-    { text: "Write workshop examples", done: false},
-    { text: "Host workshop", done: false }
-  ],
-  newTodo: { text: "" },
-  tabs: { activeTab: "all" }
-};
-const store = createStore(reducer, initialState);
+const reducer = combineReducers({
+  todos: todosReducer,
+  newTodo: newTodoReducer,
+  tabs: tabsReducer
+});
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}><TodoListContainer /></Provider>,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TodoActions from './TodoActions';
+import NewTodoActions from './NewTodoActions';
 
 export class NewTodo extends React.Component {
   render() {
@@ -20,8 +20,8 @@ function mapStateToProperties(state) {
   };
 }
 export const actionCreators = {
-  inputTextChanged: (event) => { return { type: TodoActions.newTodoTextChanged, text: event.target.value }},
-  newTodoSubmitted: (text) => { return { type: TodoActions.newTodoCreated, text: text }}
+  inputTextChanged: (event) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
+  newTodoSubmitted: (text) => { return { type: NewTodoActions.newTodoCreated, text: text }}
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);

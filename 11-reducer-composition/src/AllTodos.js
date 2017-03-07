@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TodoActions from './TodoActions';
+import TodosActions from './TodosActions';
 
 export class AllTodos extends React.Component {
   render() {
@@ -23,11 +23,11 @@ export class AllTodos extends React.Component {
 
 function mapStateToProperties(state) {
   return {
-    todos: state.todos
+    todos: state.todos.all
   };
 }
 export const actionCreators = {
-  toggleTodoState: (text) => { return { type: TodoActions.todoStateToggled, text: text }}
+  toggleTodoState: (text) => { return { type: TodosActions.todoStateToggled, text: text }}
 }
 
 export const AllTodosContainer = connect(mapStateToProperties, actionCreators)(AllTodos);

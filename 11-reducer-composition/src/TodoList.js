@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import TodoActions from './TodoActions';
+import TabsActions from './TabsActions';
 import { AllTodosContainer } from './AllTodos';
 import { NewTodoContainer } from './NewTodo';
 
@@ -38,7 +38,7 @@ function mapStateToProperties(state) {
   };
 }
 export const actionCreators = {
-  switchTab: (tab) => { return { type: TodoActions.tabSwitched, tab: tab }}
+  switchTab: (tab) => { return { type: TabsActions.tabSwitched, tab: tab }}
 }
 
 export const TodoListContainer = connect(mapStateToProperties, actionCreators)(TodoList);
