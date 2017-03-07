@@ -4,11 +4,12 @@ export function reducer(state, action) {
   switch(action.type) {
     case TodoActions.todoStateToggled:
       const newTodos = state.todos.map(todo => {
-        if(todo.text === action.text) {
-          todo.done = !todo.done;
-          return todo;
+        const newTodo = Object.assign({}, todo);
+        if(newTodo.text === action.text) {
+          newTodo.done = !newTodo.done;
+          return newTodo;
         }
-        return todo;
+        return newTodo;
       });
       return Object.assign({}, state, {
         todos: newTodos
