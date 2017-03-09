@@ -10,9 +10,13 @@ const initialState = {
   welcome: {
     toGreet: "",
     greeting: ""
+  },
+  bye: {
+    goodbye: "Goodbye"
   }
 };
 const store = createStore(reducer, initialState);
+
 
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,
