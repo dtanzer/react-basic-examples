@@ -1,5 +1,8 @@
+//@flow
 import React from 'react';
 import { connect } from 'react-redux';
+
+import type { Todo, State, NewAction, TodoAction, Action } from './TodoTypes';
 
 import NewTodoActions from './NewTodoActions';
 
@@ -24,10 +27,14 @@ function createTodoOnServer(text, callback) {
   setTimeout(() => callback(createTodo(text)), 2000);
 }
 
+function createNewTodoActionObject(todo : Todo) : TodoAction {
+  return { type: "NEW_TODO_CREATED", todo: todo }
+}
+
 function createNewTodo(text) {
-  return (dispatch) => {
-    dispatch({type: NewTodoActions.creatingNewTodo });
-    createTodoOnServer(text, (todo) => dispatch({ type: NewTodoActions.newTodoCreated, todo: todo }))
+  return (dispatch: Action => void) => {
+    //dispatch({type: NewTodoActions.creatingNewTodo });
+    createTodoOnServer(text, (todo: Todo) => dispatch(createNewTodoActionObject(todo)))
   }
 }
 
@@ -37,8 +44,8 @@ function mapStateToProperties(state) {
   };
 }
 export const actionCreators = {
-  inputTextChanged: (event) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
-  newTodoSubmitted: (text) => createNewTodo(text)
+  inputTextChanged: (event : { target : { value : string} }) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
+  newTodoSubmitted: (text: string) => createNewTodo(text)
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);
