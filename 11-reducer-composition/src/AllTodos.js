@@ -22,6 +22,7 @@ export class AllTodos extends React.Component {
 }
 
 function mapStateToProperties(state) {
+  console.log(state)
   return {
     todos: state.todos
   };

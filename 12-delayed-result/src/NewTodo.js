@@ -29,9 +29,19 @@ function mapStateToProperties(state) {
     newText: state.newTodo.text
   };
 }
+
+function submitTodo(text){
+  return (dispatch) => {
+    dispatch({type: NewTodoActions.createToDoOnServer});
+    createTodoOnServer(text, todo => dispatch({ type: NewTodoActions.newTodoCreated, todo: todo }))
+    
+  };
+
+}
+
 export const actionCreators = {
   inputTextChanged: (event) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
-  newTodoSubmitted: (text) => { return { type: NewTodoActions.newTodoCreated, todo: createTodo(text) }}
+  newTodoSubmitted: (text) => { return submitTodo(text)}
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);
