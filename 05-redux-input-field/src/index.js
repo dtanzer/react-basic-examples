@@ -8,8 +8,8 @@ import { reducer } from './Reducer';
 
 const initialState = {
   welcome: {
-    toGreet: "",
-    greeting: ""
+    toGreet: "World",
+    greeting: "Hello World"
   }
 };
 const store = createStore(reducer, initialState);
