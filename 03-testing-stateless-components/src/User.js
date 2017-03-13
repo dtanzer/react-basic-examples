@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const FirstName = (props) => <span className="first-name">{this.props.firstName}</span>;
+
 class User extends React.PureComponent {
   render() {
     const email = this.props.email ? <span className="email"> {this.props.email}</span> : null;
@@ -8,7 +10,7 @@ class User extends React.PureComponent {
 
     return (
       <li>
-        <span className="first-name">{this.props.firstName}</span>&nbsp;
+        <FirstName firstName={this.props.firstName} />&nbsp;
         <span className="last-name">{this.props.lastName}</span>
         {email}
         {activeInfo}
