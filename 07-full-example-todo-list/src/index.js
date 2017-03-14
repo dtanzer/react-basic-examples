@@ -12,7 +12,8 @@ const initialState = {
     { text: "Buy Beer", done: true },
     { text: "Write workshop examples", done: false},
     { text: "Host workshop", done: false }
-  ]
+  ],
+  inputText: ""
 };
 const store = createStore(reducer, initialState);
 
