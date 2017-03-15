@@ -1,9 +1,17 @@
 import TodoActions from './TodoActions';
 
-export function reducer(state, action) {
+import { combineReducers } from 'redux';
+
+const todosInitialState = [
+  { text: "Buy Milk", done: true },
+  { text: "Buy Beer", done: true },
+  { text: "Write workshop examples", done: false},
+  { text: "Host workshop", done: true }
+];
+function todosReducer(state=todosInitialState, action) {
   switch(action.type) {
     case TodoActions.todoStateToggled:
-      const newTodos = state.todos.map(todo => {
+      const newTodos = state.map(todo => {
         const newTodo = Object.assign({}, todo);
         if(newTodo.text === action.text) {
           newTodo.done = !newTodo.done;
@@ -11,26 +19,42 @@ export function reducer(state, action) {
         }
         return newTodo;
       });
-      return Object.assign({}, state, {
-        todos: newTodos
-      });
+      return newTodos;
     case TodoActions.newTodoCreated:
-      return Object.assign({}, state, {
-        todos: [
-          ...state.todos,
+      return [
+          ...state,
           { text: action.text, done: false }
-        ],
-        newTodo: { text: "" }
-      });
-    case TodoActions.newTodoTextChanged:
-      return Object.assign({}, state, {
-        newTodo: { text: action.text }
-      });
-    case TodoActions.tabSwitched:
-      return Object.assign({}, state, {
-        tabs: { activeTab: action.tab }
-      });
+        ];
     default:
       return state;
   }
 }
+
+const newTodoInitialState = { text: "" };
+function newTodoReducer(state=newTodoInitialState, action) {
+  switch(action.type) {
+    case TodoActions.newTodoCreated:
+      return { text: "" };
+    case TodoActions.newTodoTextChanged:
+      return { text: action.text };
+    default:
+      return state;
+  }
+}
+
+const tabsInitialState = { activeTab: "all" };
+function tabsReducer(state=tabsInitialState, action) {
+  console.log(state);
+  switch(action.type) {
+    case TodoActions.tabSwitched:
+      return { activeTab: action.tab };
+    default:
+      return state;
+  }
+}
+
+export const reducer = combineReducers({
+  todos: todosReducer,
+  newTodo: newTodoReducer,
+  tabs: tabsReducer
+});
