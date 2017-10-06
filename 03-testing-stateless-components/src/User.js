@@ -1,6 +1,6 @@
 import React from 'react';
 
-class User extends React.PureComponent {
+export class User extends React.PureComponent {
   render() {
     const email = this.props.email ? <span className="email"> {this.props.email}</span> : null;
     const active = this.props.active || false;
@@ -16,5 +16,3 @@ class User extends React.PureComponent {
     );
   }
 }
-
-export default User;
