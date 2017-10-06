@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export class Overlay extends React.Component {
   render() {
-    const display = this.props.overlay? "block" : "none";
+    const display = this.props.overlay==="block"? "block" : "none";
     const style = {
         background: "rgba(0, 0, 0, 0.5)",
         display: display,

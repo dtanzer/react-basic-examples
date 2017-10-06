@@ -1,10 +1,12 @@
 import React from 'react';
 
+export const ActiveInfo = (active) => <span className="active"> active: {active.toString()}</span>;
+
 export class User extends React.PureComponent {
   render() {
     const email = this.props.email ? <span className="email"> {this.props.email}</span> : null;
     const active = this.props.active || false;
-    const activeInfo = <span className="active"> active: {active.toString()}</span>;
+    const activeInfo = <ActiveInfo active={active} />;
 
     return (
       <li>

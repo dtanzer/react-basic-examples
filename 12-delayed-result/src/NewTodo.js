@@ -29,9 +29,27 @@ function mapStateToProperties(state) {
     newText: state.newTodo.text
   };
 }
+
+const newTodoSubmitted = (text) => { 
+  return (dispatch) => {
+    const creatingNewTodoAction = {
+      type: NewTodoActions.creatingNewTodo
+    };
+    
+    dispatch(creatingNewTodoAction);
+    createTodoOnServer(text, todo => {
+      const todoSuccessfullyCreated = { 
+        type: NewTodoActions.newTodoCreated, 
+        todo
+      };
+      dispatch(todoSuccessfullyCreated);
+    });
+  }
+}
+
 export const actionCreators = {
   inputTextChanged: (event) => { return { type: NewTodoActions.newTodoTextChanged, text: event.target.value }},
-  newTodoSubmitted: (text) => { return { type: NewTodoActions.newTodoCreated, todo: createTodo(text) }}
+  newTodoSubmitted
 }
 
 export const NewTodoContainer = connect(mapStateToProperties, actionCreators)(NewTodo);

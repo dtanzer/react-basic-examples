@@ -1,6 +1,17 @@
 import TodoActions from './TodoActions';
 
-export function reducer(state, action) {
+const initialState = {
+  todos: [
+    { text: "Buy Milk", done: true },
+    { text: "Buy Beer", done: true },
+    { text: "Write workshop examples", done: false},
+    { text: "Host workshop", done: false }
+  ],
+  newTodo: { text: "" },
+  tabs: { activeTab: "all" }
+};
+
+export function reducer(state = initialState, action) {
   switch(action.type) {
     case TodoActions.todoStateToggled:
       const newTodos = state.todos.map(todo => {

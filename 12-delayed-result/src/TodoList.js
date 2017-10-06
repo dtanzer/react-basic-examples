@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TabsActions from './TabsActions';
 import { AllTodosContainer } from './AllTodos';
 import { NewTodoContainer } from './NewTodo';
+import { Overlay } from './Overlay';
 
 export class TodoList extends Component {
   render() {
@@ -22,6 +23,7 @@ export class TodoList extends Component {
     const activeTab = this.props.activeTab==="all"? todosTab : newTodoTab;
     return (
       <div>
+        <Overlay overlay={ this.props.overlay } />
         <div id="tabs">
           <a href="#" onClick={_ => this.props.switchTab("all")}>All Todos</a> | 
           <a href="#" onClick={_ => this.props.switchTab("new")}>New Todo</a>
@@ -34,7 +36,8 @@ export class TodoList extends Component {
 
 function mapStateToProperties(state) {
   return {
-    activeTab: state.tabs.activeTab
+    activeTab: state.tabs.activeTab,
+    overlay: state.tabs.overlay
   };
 }
 export const actionCreators = {
