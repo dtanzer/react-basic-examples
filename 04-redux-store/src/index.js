@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import { AppContainer } from './App';
 import './index.css';
 
 const initialState = {
@@ -12,7 +15,12 @@ const initialState = {
   ]
 };
 
+const reducer = (state, action) => state;
+const store = createStore(reducer, initialState);
+
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>,
   document.getElementById('root')
 );
