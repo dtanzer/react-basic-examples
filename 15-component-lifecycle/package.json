@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "jointjs": "^3.0.2",
+    "jointjs": "^3.3.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "react": "^16.8.6",
